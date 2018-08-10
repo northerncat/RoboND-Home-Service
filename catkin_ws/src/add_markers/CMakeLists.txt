@@ -9,7 +9,7 @@ add_compile_options(-std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-#  nav_msgs
+  nav_msgs
   visualization_msgs
 )
 
@@ -103,7 +103,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
+#  INCLUDE_DIRS include
 #  LIBRARIES add_markers
 #  CATKIN_DEPENDS roscpp visualization_msgs
 #  DEPENDS system_lib
@@ -133,7 +133,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(add_markers_node src/add_markers_node.cpp include/MarkerAdder.cpp)
+add_executable(add_markers_node src/add_markers_node.cpp include/MarkerAdder.cpp include/ConstantMarkerAdder.cpp)
 add_executable(add_constant_markers_node src/add_constant_markers_node.cpp include/ConstantMarkerAdder.cpp)
 
 ## Rename C++ executable without prefix
@@ -148,6 +148,9 @@ add_executable(add_constant_markers_node src/add_constant_markers_node.cpp inclu
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(add_constant_markers_node
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(add_markers_node
   ${catkin_LIBRARIES}
 )
 
